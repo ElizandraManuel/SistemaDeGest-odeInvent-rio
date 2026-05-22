@@ -1,0 +1,21 @@
+From 403297047424a999cec31d21b08aefca8291b463 Mon Sep 17 00:00:00 2001
+From: ElizandraManuel <elizandramanuel07@gmail.com>
+Date: Wed, 27 May 2026 11:43:49 +0100
+Subject: [PATCH 2/2] implementacao da classe para persistencia
+
+---
+ README.md | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/README.md b/README.md
+index 53e3718..85e4878 100644
+--- a/README.md
++++ b/README.md
+@@ -2,4 +2,3 @@
+ 
+ Disciplina: Estrutura de Dados II
+ Curso: Engenharia Informática
+-
+-- 
+2.51.0.windows.2
+
