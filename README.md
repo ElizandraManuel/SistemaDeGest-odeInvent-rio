@@ -1,76 +1,91 @@
-# SistemaDeGest-odeInvent-rio
+                    #Sistema de Gestão de Inventário
 
-Sistema de Gestão de Inventário
-Aplicação de console em Java para gerenciar lojas, produtos, vendas, usuários e relatórios de inventário.
+Aplicaç#ão de consola em Java para gerir lojas, produtos, vendas, utilizadores e relatórios de inventário.
 
-                 Funcionalidades
-Autenticação de utilizadores com registo e login por email ou telefone.
-Gestão de lojas: criar, listar, selecionar, ver detalhes e excluir.
-Gestão de produtos por loja: adicionar, listar, consultar estoque, reportar estoque, identificar estoque baixo e excluir.
-Registro de vendas com cálculo automático do total e redução de estoque.
-Relatórios de vendas, inventário completo e resumo do sistema.
-Persistência de dados em arquivos dentro da pasta data/.
-Criação de backup dos arquivos principais de dados.
-Inserção de dados de teste para começar rapidamente.
-                 Requisitos
-Java Development Kit 24 ou superior para compilar e executar o projeto.
-Apache Ant, ou então o NetBeans com suporte ao projeto Ant.
-Como executar
-Opção 1: via terminal sem Ant
-Se você tiver o JDK 24 instalado, pode compilar e executar diretamente no terminal a partir da raiz do projeto:
+## Funcionalidades
 
+- Autenticação de utilizadores com registo e login por email ou telefone.
+- Gestão de lojas: criar, listar, selecionar, ver detalhes e eliminar.
+- Gestão de produtos por loja: adicionar, listar, consultar stock, repor stock, identificar stock baixo e eliminar.
+- Registo de vendas com cálculo automático do total e redução de stock.
+- Relatórios de vendas, inventário completo e resumo do sistema.
+- Persistência de dados em ficheiros dentro da pasta `data/`.
+- Criação de backup dos ficheiros principais de dados.
+- Inserção de dados de teste para começar rapidamente.
+
+## Requisitos
+
+- Java Development Kit 24 ou superior para compilar e executar o projeto.
+- Apache Ant, ou então o NetBeans com suporte ao projeto Ant.
+
+## Como executar
+
+### Opção 1: via terminal sem Ant
+
+Se tiver o JDK 24 instalado, pode compilar e executar diretamente no terminal a partir da raiz do projeto:
+
+```bash
 mkdir -p out
 javac -encoding UTF-8 -d out $(find src -name "*.java")
 java -cp out sistemadegestaodeinventario.SistemaDeGestaoDeInventario
-Opção 2: via terminal com Ant
+```
+
+### Opção 2: via terminal com Ant
+
 Na raiz do projeto, execute:
 
+```bash
 ant clean run
+```
+
 Se quiser apenas gerar o JAR:
 
+```bash
 ant clean jar
-O seguinte principal do projeto é sistemadegestaodeinventario.SistemaDeGestaoDeInventario.
+```
 
-Opção 3: via NetBeans
-Abra o projeto no NetBeans.
-Aguarde a indexação e compilação.
-Utilize a opção Executar/Executar o projeto.
-Como usar
+O executável principal do projeto é `sistemadegestaodeinventario.SistemaDeGestaoDeInventario`.
+
+### Opção 3: via NetBeans
+
+1. Abra o projeto no NetBeans.
+2. Aguarde a indexação e compilação.
+3. Use a opção Run/Executar do projeto.
+
+## Como usar
+
 Ao iniciar, o sistema mostra o menu de autenticação:
 
-Fazer login.
-Cadastrar novo usuário.
-Sair.
-Depois de autenticado, o menu principal permite acessar:
+1. Fazer login.
+2. Cadastrar novo utilizador.
+0. Sair.
 
-Gestão de Lojas.
-Gestão de Produtos.
-Registrar Vendas.
-Relatórios e Consultas.
-Configuração do Sistema.
-Sair.
+Depois de autenticado, o menu principal permite aceder a:
+
+1. Gestão de Lojas.
+2. Gestão de Produtos.
+3. Registar Vendas.
+4. Relatórios e Consultas.
+5. Configuração do Sistema.
+0. Sair.
+
 Algumas ações dependem de selecionar primeiro uma loja ativa.
 
-Dados e persistência
-O sistema lê e grave informação na pasta data/.
+## Dados e persistência
+
+O sistema lê e grava informação na pasta `data/`.
 
 Arquivos principais:
 
-data/usuarios.txt
+- `data/usuarios.txt`
+- `data/lojas.txt`
+- `data/loja_<ID>_produtos.txt`
 
+  ## Observações
 
-                      Estrutura do projeto
-src/sistemadegestaodeinventario/- classe principal da aplicação.
-src/sistemadegestaodeinventario/modelo/- entidades como Loja, Produto, Venda e Usuario.
-src/sistemadegestaodeinventario/negocio/- regras de negócio e gestão do inventário.
-src/sistemadegestaodeinventario/persistencia/- leitura e escrita dos arquivos.
-src/sistemadegestaodeinventario/ui/- interface de console.
+- A aplicação usa codificação UTF-8.
+- As credenciais podem ser email ou telefone com 9 dígitos.
+- As senhas devem ter pelo menos 8 caracteres.
+- `data/loja_<ID>_vendas.csv`
 
-
-                     Observações
-A aplicação usa UTF-8.
-As credenciais podem ser email ou telefone com 9 dígitos.
-As senhas devem ter pelo menos 8 caracteres.
-data/lojas.txt
-data/loja_<ID>_produtos.txt
-data/loja_<ID>_vendas.csv
+Exemplos já incluídos no repositório:
