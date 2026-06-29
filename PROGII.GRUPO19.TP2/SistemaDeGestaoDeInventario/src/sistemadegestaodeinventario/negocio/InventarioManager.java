@@ -9,7 +9,6 @@ import sistemadegestaodeinventario.modelo.ItemVenda;
 import sistemadegestaodeinventario.modelo.Loja;
 import sistemadegestaodeinventario.modelo.Produto;
 import sistemadegestaodeinventario.modelo.Venda;
-import sistemadegestaodeinventario.util.FormatadorMoeda;
 
 public class InventarioManager {
 
@@ -39,10 +38,6 @@ public class InventarioManager {
 	}
 
 	public Venda registarVenda(String idLoja, List<ItemVenda> itens) {
-		return registarVenda(idLoja, itens, "");
-	}
-
-	public Venda registarVenda(String idLoja, List<ItemVenda> itens, String idVendedor) {
 		Loja loja = obterLoja(idLoja);
 		if (loja == null) {
 			throw new IllegalArgumentException("Loja não encontrada.");
@@ -62,7 +57,7 @@ public class InventarioManager {
 		}
 
 		String idVenda = gerarIdVenda(idLoja);
-		Venda venda = new Venda(idVenda, LocalDateTime.now(), idLoja, idVendedor);
+		Venda venda = new Venda(idVenda, LocalDateTime.now(), idLoja);
 		for (ItemVenda item : itens) {
 			Produto produto = loja.consultarProduto(item.idProduto());
 			produto.diminuirStock(item.quantidade());
@@ -101,7 +96,7 @@ public class InventarioManager {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Relatório de vendas da loja ").append(loja.getNome()).append('\n');
 		sb.append("Total de vendas: ").append(loja.listarVendas().size()).append('\n');
-		sb.append("Valor total: ").append(FormatadorMoeda.kz(loja.obterTotalVendas())).append('\n');
+		sb.append("Valor total: ").append(String.format("%.2f", loja.obterTotalVendas())).append('\n');
 		for (Venda venda : loja.listarVendas()) {
 			sb.append(venda).append('\n');
 		}
@@ -117,7 +112,7 @@ public class InventarioManager {
 		}
 		return "Lojas: " + lojas.size()
 				+ "\nProdutos: " + totalProdutos
-				+ "\nVendas: " + FormatadorMoeda.kz(totalVendas);
+				+ "\nVendas: " + String.format("%.2f", totalVendas);
 	}
 
 	public List<Loja> getLojasOrdenadas() {
@@ -127,9 +122,6 @@ public class InventarioManager {
 	}
 
 	public boolean deletarLoja(String idLoja) {
-		if (idLoja == null) {
-			return false;
-		}
 		return lojas.remove(idLoja) != null;
 	}
 
