@@ -60,6 +60,7 @@ public class Loja {
 		this.telefone = telefone == null ? "" : telefone.trim();
 	}
 
+        // GESTÃO DE STOCK: Adiciona um novo produto ou atualiza os dados e soma o stock se o produto já existir.
 	public void adicionarProduto(Produto produto) {
 		if (produto == null) {
 			throw new IllegalArgumentException("O produto não pode ser nulo.");
@@ -75,14 +76,13 @@ public class Loja {
 		}
 		produtos.add(produto);
 	}
-
-	public boolean removerProduto(String idProduto) {
-		if (idProduto == null) {
-			return false;
-		}
-		return produtos.removeIf(produto -> produto.getIdProduto().equals(idProduto));
+        
+// REMOÇÃO: Procura o produto pelo código e elimina-o do sistema.
+	public void removerProduto(String idProduto) {
+		produtos.removeIf(produto -> produto.getIdProduto().equals(idProduto));
 	}
 
+        // PROCURA: Percorre a lista de produtos e devolve o produto encontrado (ou "null" se não existir).
 	public Produto consultarProduto(String idProduto) {
 		for (Produto produto : produtos) {
 			if (produto.getIdProduto().equals(idProduto)) {
@@ -92,10 +92,12 @@ public class Loja {
 		return null;
 	}
 
+        // CONSULTA DE LISTA: Devolve a lista de todos os produtos 
 	public List<Produto> listarProdutos() {
 		return Collections.unmodifiableList(produtos);
 	}
-
+        
+// HISTÓRICO DE VENDAS: Recebe uma venda concluída e guarda-a no registo da loja.
 	public void registarVenda(Venda venda) {
 		if (venda == null) {
 			throw new IllegalArgumentException("A venda não pode ser nula.");
@@ -103,6 +105,7 @@ public class Loja {
 		vendas.add(venda);
 	}
 
+        // QUANTIDADE EM STOCK: Procura o produto e diz quantos restam (devolve -1 se o produto não existir).
 	public int obterStock(String idProduto) {
 		Produto produto = consultarProduto(idProduto);
 		return produto == null ? -1 : produto.getQuantidadeEmStock();
